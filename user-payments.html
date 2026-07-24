@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Payments — Ajo Savings</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="topbar" id="topbar">
+    <button class="hamburger" id="hamburger" aria-label="Open menu"><i class="fas fa-bars"></i></button>
+    <span class="topbar-logo"><i class="fas fa-piggy-bank"></i> Ajo Savings</span>
+  </header>
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  <div class="app-layout">
+    <nav class="sidebar" id="sidebar">
+      <a href="index.html" class="sidebar-logo" style="text-decoration:none;" aria-label="Go to home page"><i class="fas fa-piggy-bank"></i> Ajo Savings</a>
+      <ul class="nav-links">
+        <li><a href="user-dashboard.html"     data-page="user-dashboard">    <i class="fas fa-home"></i>              My Dashboard</a></li>
+        <li><a href="user-contributions.html" data-page="user-contributions"><i class="fas fa-hand-holding-usd"></i>  My Contributions</a></li>
+        <li><a href="user-payments.html"      data-page="user-payments">     <i class="fas fa-money-bill-wave"></i>   My Payments</a></li>
+        <li><a href="user-reports.html"       data-page="user-reports">      <i class="fas fa-chart-pie"></i>         My Reports</a></li>
+        <li><a href="user-profile.html"       data-page="user-profile">      <i class="fas fa-user"></i>              My Profile</a></li>
+      </ul>
+      <div style="padding:16px 10px;border-top:1px solid rgba(255,255,255,0.08);margin-top:auto;">
+        <button id="user-logout-btn" style="width:100%;padding:9px 12px;background:rgba(220,38,38,0.15);color:#fca5a5;border:none;border-radius:6px;font-size:0.875rem;font-weight:500;cursor:pointer;display:flex;align-items:center;gap:8px;font-family:inherit;">
+          <i class="fas fa-sign-out-alt"></i> Logout
+        </button>
+      </div>
+    </nav>
+
+    <main class="main-content">
+      <div class="page-header">
+        <div>
+          <h1>My Payments</h1>
+          <p>Request payments and track disbursements</p>
+        </div>
+      </div>
+
+      <!-- Request Payment Form -->
+      <div class="card" style="margin-bottom:24px;">
+        <div class="card-header">
+          <span class="card-title">
+            <i class="fas fa-paper-plane" style="background:var(--primary-faint);color:var(--primary);"></i>
+            Request a Payment
+          </span>
+        </div>
+        <form id="payment-request-form" novalidate>
+          <div style="display:grid;grid-template-columns:1fr 1fr 2fr auto;gap:12px;align-items:end;flex-wrap:wrap;">
+            <div class="form-group" style="margin-bottom:0;">
+              <label for="req-amount">Amount (₦)</label>
+              <input type="number" id="req-amount" class="form-control" min="1" placeholder="e.g. 5000" required />
+              <span class="field-error" id="req-amount-error"></span>
+            </div>
+            <div class="form-group" style="margin-bottom:0;">
+              <label for="req-date">Preferred Date</label>
+              <input type="date" id="req-date" class="form-control" required />
+              <span class="field-error" id="req-date-error"></span>
+            </div>
+            <div class="form-group" style="margin-bottom:0;">
+              <label for="req-reason">Reason <span style="color:var(--text-muted);font-weight:400;">(optional)</span></label>
+              <input type="text" id="req-reason" class="form-control" placeholder="e.g. Monthly collection" />
+            </div>
+            <div>
+              <button type="submit" class="btn btn-primary" id="req-submit" style="white-space:nowrap;">
+                <i class="fas fa-paper-plane"></i> Submit Request
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <!-- My Requests -->
+      <div class="card" style="margin-bottom:24px;">
+        <div class="card-header">
+          <span class="card-title">
+            <i class="fas fa-clock" style="background:var(--warning-faint);color:var(--warning);"></i>
+            My Payment Requests
+          </span>
+          <span id="requests-count" style="font-size:0.8rem;color:var(--text-muted);font-weight:500;"></span>
+        </div>
+        <div class="table-wrapper">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Amount (₦)</th>
+                <th>Preferred Date</th>
+                <th>Reason</th>
+                <th>Requested On</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="my-requests-tbody">
+              <tr><td colspan="6" style="text-align:center;padding:2rem;color:var(--text-muted);">Loading…</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Payment History -->
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">
+            <i class="fas fa-money-bill-wave" style="background:var(--success-faint);color:var(--success);"></i>
+            Payment History
+          </span>
+          <span id="payments-total" style="font-size:0.8rem;color:var(--text-muted);font-weight:500;"></span>
+        </div>
+        <div class="table-toolbar">
+          <input type="text" id="payments-search" class="search-input" placeholder="Search by date, amount, or status…" />
+          <select id="payments-sort" class="sort-select">
+            <option value="newest">Newest</option>
+            <option value="oldest">Oldest</option>
+            <option value="amount-high">Highest Amount</option>
+            <option value="amount-low">Lowest Amount</option>
+          </select>
+        </div>
+        <div class="table-wrapper">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Amount (₦)</th>
+                <th>Date</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="my-payments-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <div id="toast-container"></div>
+  <script type="module" src="js/user-payments.js"></script>
+</body>
+</html>

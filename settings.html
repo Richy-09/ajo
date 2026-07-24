@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Settings — Ajo Savings</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="topbar" id="topbar">
+    <button class="hamburger" id="hamburger" aria-label="Open menu"><i class="fas fa-bars"></i></button>
+    <span class="topbar-logo"><i class="fas fa-piggy-bank"></i> Ajo Savings</span>
+  </header>
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  <div class="app-layout">
+    <nav class="sidebar" id="sidebar">
+      <a href="index.html" class="sidebar-logo" style="text-decoration:none;" aria-label="Go to home page"><i class="fas fa-piggy-bank"></i> Ajo Savings</a>
+      <ul class="nav-links">
+        <li><a href="dashboard.html" data-page="dashboard"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+        <li><a href="members.html" data-page="members"><i class="fas fa-users"></i> Members</a></li>
+        <li><a href="contributions.html" data-page="contributions"><i class="fas fa-hand-holding-usd"></i> Contributions</a></li>
+        <li><a href="payments.html" data-page="payments"><i class="fas fa-money-bill-wave"></i> Payments</a></li>
+        <li><a href="reports.html" data-page="reports"><i class="fas fa-chart-bar"></i> Reports</a></li>
+        <li><a href="profile.html" data-page="profile"><i class="fas fa-user"></i> Profile</a></li>
+        <li><a href="settings.html" data-page="settings"><i class="fas fa-cog"></i> Settings</a></li>
+      </ul>
+      <div class="sidebar-footer">Ajo Savings Tracker v1.0</div>
+    </nav>
+
+    <main class="main-content">
+      <div class="page-header">
+        <div>
+          <h1>Settings</h1>
+          <p>Configure your group and account preferences</p>
+        </div>
+      </div>
+
+      <div style="max-width:680px;display:flex;flex-direction:column;gap:20px;">
+
+        <!-- Group Information -->
+        <div class="card" id="section-group">
+          <div class="card-header">
+            <span class="card-title"><i class="fas fa-users" style="background:var(--primary-faint);color:var(--primary);"></i> Group Information</span>
+          </div>
+          <p id="group-name-display" style="font-size:0.875rem;color:var(--text);margin-bottom:6px;"></p>
+          <p id="group-created-display" style="font-size:0.875rem;color:var(--text-muted);"></p>
+        </div>
+
+        <!-- Notifications -->
+        <div class="card" id="section-notifications">
+          <div class="card-header">
+            <span class="card-title"><i class="fas fa-bell" style="background:var(--warning-faint);color:var(--warning);"></i> Notifications</span>
+          </div>
+          <div class="toggle-row">
+            <div>
+              <div class="toggle-label">Contribution Alerts</div>
+              <div style="font-size:0.75rem;color:var(--text-muted);margin-top:2px;">Notify when a contribution is recorded</div>
+            </div>
+            <label class="toggle-switch" aria-label="Contribution Alerts">
+              <input type="checkbox" id="notify-contributions" />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <div class="toggle-row">
+            <div>
+              <div class="toggle-label">Payment Alerts</div>
+              <div style="font-size:0.75rem;color:var(--text-muted);margin-top:2px;">Notify when a payment is made</div>
+            </div>
+            <label class="toggle-switch" aria-label="Payment Alerts">
+              <input type="checkbox" id="notify-payments" />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Change Password -->
+        <div class="card" id="section-password">
+          <div class="card-header">
+            <span class="card-title"><i class="fas fa-lock" style="background:var(--info-faint);color:var(--info);"></i> Change Password</span>
+          </div>
+          <form id="password-form" novalidate>
+            <div class="form-group">
+              <label for="current-password">Current Password</label>
+              <input type="password" id="current-password" class="form-control" required />
+              <span class="field-error" id="current-password-error"></span>
+            </div>
+            <div class="form-group">
+              <label for="new-password">New Password</label>
+              <input type="password" id="new-password" class="form-control" required />
+              <span class="field-error" id="new-password-error"></span>
+            </div>
+            <div class="form-group">
+              <label for="confirm-password">Confirm New Password</label>
+              <input type="password" id="confirm-password" class="form-control" required />
+              <span class="field-error" id="confirm-password-error"></span>
+            </div>
+            <button type="submit" class="btn btn-primary" id="password-submit">
+              <i class="fas fa-key"></i> Update Password
+            </button>
+          </form>
+        </div>
+
+        <!-- Backup -->
+        <div class="card" id="section-backup">
+          <div class="card-header">
+            <span class="card-title"><i class="fas fa-database" style="background:var(--success-faint);color:var(--success);"></i> Backup Data</span>
+          </div>
+          <p style="font-size:0.875rem;color:var(--text-muted);margin-bottom:16px;">Download a full backup of all members, contributions, and payments as a JSON file.</p>
+          <button type="button" class="btn btn-success" id="backup-btn">
+            <i class="fas fa-download"></i> Download Backup
+          </button>
+        </div>
+
+        <!-- Logout -->
+        <div class="card" id="section-logout">
+          <div class="card-header">
+            <span class="card-title"><i class="fas fa-sign-out-alt" style="background:var(--danger-faint);color:var(--danger);"></i> Logout</span>
+          </div>
+          <p style="font-size:0.875rem;color:var(--text-muted);margin-bottom:16px;">Sign out of your account. Any unsaved changes will be lost.</p>
+          <button type="button" class="btn btn-danger" id="logout-btn">
+            <i class="fas fa-sign-out-alt"></i> Logout
+          </button>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <div id="toast-container"></div>
+  <script type="module" src="js/settings.js"></script>
+</body>
+</html>

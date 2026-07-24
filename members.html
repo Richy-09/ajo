@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Members — Ajo Savings</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="topbar" id="topbar">
+    <button class="hamburger" id="hamburger" aria-label="Open menu"><i class="fas fa-bars"></i></button>
+    <span class="topbar-logo"><i class="fas fa-piggy-bank"></i> Ajo Savings</span>
+  </header>
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  <div class="app-layout">
+    <nav class="sidebar" id="sidebar">
+      <a href="index.html" class="sidebar-logo" style="text-decoration:none;" aria-label="Go to home page"><i class="fas fa-piggy-bank"></i> Ajo Savings</a>
+      <ul class="nav-links">
+        <li><a href="dashboard.html" data-page="dashboard"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+        <li><a href="members.html" data-page="members"><i class="fas fa-users"></i> Members</a></li>
+        <li><a href="contributions.html" data-page="contributions"><i class="fas fa-hand-holding-usd"></i> Contributions</a></li>
+        <li><a href="payments.html" data-page="payments"><i class="fas fa-money-bill-wave"></i> Payments</a></li>
+        <li><a href="reports.html" data-page="reports"><i class="fas fa-chart-bar"></i> Reports</a></li>
+        <li><a href="profile.html" data-page="profile"><i class="fas fa-user"></i> Profile</a></li>
+        <li><a href="settings.html" data-page="settings"><i class="fas fa-cog"></i> Settings</a></li>
+      </ul>
+      <div class="sidebar-footer">Ajo Savings Tracker v1.0</div>
+    </nav>
+
+    <main class="main-content">
+      <div class="page-header">
+        <div>
+          <h1>Members</h1>
+          <p>Manage your savings group members</p>
+        </div>
+      </div>
+
+      <div class="content-grid">
+        <!-- Form panel -->
+        <div class="form-panel">
+          <h2><i class="fas fa-user-plus" style="color:var(--primary);margin-right:6px;"></i>Add Member</h2>
+          <form id="member-form" novalidate>
+            <div class="form-group">
+              <label for="name">Full Name</label>
+              <input type="text" id="name" class="form-control" placeholder="e.g. Amaka Obi" required />
+              <span class="field-error" id="name-error"></span>
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone Number</label>
+              <input type="tel" id="phone" class="form-control" placeholder="e.g. 08012345678" required />
+              <span class="field-error" id="phone-error"></span>
+            </div>
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" class="form-control" placeholder="email@example.com" required />
+              <span class="field-error" id="email-error"></span>
+            </div>
+            <div class="form-group">
+              <label for="status">Status</label>
+              <select id="status" class="form-control" required>
+                <option value="" disabled selected>Select status</option>
+                <option value="Active">Active</option>
+                <option value="Inactive">Inactive</option>
+              </select>
+              <span class="field-error" id="status-error"></span>
+            </div>
+            <div class="form-group">
+              <label for="date-joined">Date Joined</label>
+              <input type="date" id="date-joined" class="form-control" required />
+              <span class="field-error" id="date-joined-error"></span>
+            </div>
+            <button type="submit" id="member-submit" class="btn btn-primary" style="width:100%;justify-content:center;">
+              <i class="fas fa-plus"></i> Add Member
+            </button>
+          </form>
+        </div>
+
+        <!-- Table panel -->
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title"><i class="fas fa-users" style="background:var(--primary-faint);color:var(--primary);"></i> All Members</span>
+            <span id="result-count" style="font-size:0.8rem;color:var(--text-muted);"></span>
+          </div>
+          <div class="table-toolbar">
+            <input type="text" id="member-search" class="search-input" placeholder="Search by name or phone…" aria-label="Search members" />
+          </div>
+          <div class="table-wrapper">
+            <table class="table" aria-label="Members table">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Phone</th>
+                  <th>Contribution (₦)</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="members-tbody"></tbody>
+            </table>
+          </div>
+          <div id="pagination" class="pagination-controls" aria-label="Pagination">
+            <button id="prev-btn" class="btn btn-secondary btn-sm" disabled><i class="fas fa-chevron-left"></i> Prev</button>
+            <span id="page-range"></span>
+            <button id="next-btn" class="btn btn-secondary btn-sm" disabled>Next <i class="fas fa-chevron-right"></i></button>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <div id="toast-container"></div>
+
+  <!-- Custom Delete Confirmation Modal -->
+  <div id="delete-modal" style="display:none;position:fixed;inset:0;z-index:2000;display:none;align-items:center;justify-content:center;">
+    <!-- Backdrop -->
+    <div id="delete-modal-backdrop" style="position:absolute;inset:0;background:rgba(15,23,42,0.55);backdrop-filter:blur(3px);"></div>
+    <!-- Dialog -->
+    <div style="position:relative;background:#fff;border-radius:16px;padding:32px 28px;max-width:420px;width:90%;box-shadow:0 24px 64px rgba(0,0,0,0.25);text-align:center;animation:fadeSlideUp 0.2s ease;">
+      <!-- Icon -->
+      <div style="width:56px;height:56px;background:#fee2e2;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 18px;font-size:1.4rem;color:#dc2626;">
+        <i class="fas fa-user-times"></i>
+      </div>
+      <!-- Heading -->
+      <h3 style="font-size:1.1rem;font-weight:700;color:#0f172a;margin-bottom:8px;">Remove Member?</h3>
+      <!-- Message -->
+      <p id="delete-modal-msg" style="font-size:0.875rem;color:#64748b;line-height:1.6;margin-bottom:6px;"></p>
+      <p style="font-size:0.8rem;color:#94a3b8;margin-bottom:28px;">Their contributions and payments will remain in the records.</p>
+      <!-- Buttons -->
+      <div style="display:flex;gap:10px;justify-content:center;">
+        <button id="delete-modal-cancel" class="btn btn-secondary" style="flex:1;justify-content:center;">
+          <i class="fas fa-times"></i> Cancel
+        </button>
+        <button id="delete-modal-confirm" class="btn btn-danger" style="flex:1;justify-content:center;">
+          <i class="fas fa-trash"></i> Yes, Remove
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="js/members.js"></script>
+</body>
+</html>

@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login / Register — Ajo Savings</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #0f0c29 0%, #1e1b4b 55%, #24243e 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px 16px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .wrapper {
+      width: 100%;
+      max-width: 440px;
+    }
+
+    /* ── Brand ────────────────────────────────────────── */
+    .brand {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+    .brand-icon {
+      width: 62px; height: 62px;
+      background: #4f46e5;
+      border-radius: 18px;
+      display: inline-flex; align-items: center; justify-content: center;
+      font-size: 1.7rem; color: #fff;
+      margin-bottom: 14px;
+      box-shadow: 0 0 0 8px rgba(79,70,229,0.15), 0 12px 32px rgba(79,70,229,0.4);
+    }
+    .brand h1 { font-size: 1.45rem; font-weight: 800; color: #fff; letter-spacing: -0.02em; }
+    .brand p  { font-size: 0.85rem; color: rgba(255,255,255,0.4); margin-top: 4px; }
+
+    /* ── Card ─────────────────────────────────────────── */
+    .card {
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0 28px 72px rgba(0,0,0,0.35);
+      overflow: hidden;
+    }
+
+    /* ── Tab switcher ─────────────────────────────────── */
+    .tab-switcher {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    .tab-btn {
+      padding: 16px;
+      background: #f8fafc;
+      border: none;
+      font-family: inherit;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: #64748b;
+      cursor: pointer;
+      transition: all 180ms;
+      display: flex; align-items: center; justify-content: center; gap: 7px;
+    }
+    .tab-btn:first-child { border-right: 1px solid #e2e8f0; }
+    .tab-btn.active {
+      background: #fff;
+      color: #4f46e5;
+      border-bottom: 2px solid #4f46e5;
+    }
+    .tab-btn i { font-size: 0.8rem; }
+
+    /* ── Panel ────────────────────────────────────────── */
+    .panel { display: none; padding: 28px; }
+    .panel.active { display: block; }
+
+    .panel-heading { font-size: 1.05rem; font-weight: 700; color: #0f172a; margin-bottom: 4px; }
+    .panel-sub     { font-size: 0.8125rem; color: #64748b; margin-bottom: 22px; }
+
+    /* ── Alert ────────────────────────────────────────── */
+    .alert {
+      display: none;
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      margin-bottom: 16px;
+      align-items: center;
+      gap: 8px;
+    }
+    .alert.error   { display: flex; background: #fee2e2; color: #991b1b; }
+    .alert.success { display: flex; background: #d1fae5; color: #065f46; }
+    .alert.info    { display: flex; background: #eef2ff; color: #3730a3; border: 1px solid #c7d2fe; }
+
+    /* Password strength */
+    .pw-req {
+      font-size: 0.72rem;
+      color: #94a3b8;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      transition: color 200ms;
+      font-weight: 500;
+    }
+    .pw-dot { font-size: 0.4rem; }
+    .pw-req.met    { color: #059669; }
+    .pw-req.unmet  { color: #dc2626; }
+
+    /* ── Form elements ────────────────────────────────── */
+    .form-group { margin-bottom: 16px; }
+    .form-group label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: #0f172a;
+      margin-bottom: 6px;
+    }
+
+    .input-wrap { position: relative; }
+    .input-wrap .icon {
+      position: absolute;
+      left: 11px; top: 50%; transform: translateY(-50%);
+      color: #94a3b8; font-size: 0.82rem;
+      pointer-events: none;
+    }
+    .input-wrap input,
+    .input-wrap select {
+      width: 100%;
+      padding: 10px 12px 10px 34px;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 8px;
+      font-size: 0.875rem;
+      font-family: inherit;
+      color: #0f172a;
+      background: #fff;
+      transition: border-color 180ms, box-shadow 180ms;
+      appearance: none;
+    }
+    .input-wrap input:focus,
+    .input-wrap select:focus {
+      outline: none;
+      border-color: #4f46e5;
+      box-shadow: 0 0 0 3px rgba(79,70,229,0.12);
+    }
+    .input-wrap input.invalid,
+    .input-wrap select.invalid { border-color: #dc2626; }
+
+    .toggle-pw {
+      position: absolute;
+      right: 10px; top: 50%; transform: translateY(-50%);
+      background: none; border: none; cursor: pointer;
+      color: #94a3b8; font-size: 0.82rem; padding: 4px;
+    }
+    .toggle-pw:hover { color: #475569; }
+
+    .field-error {
+      display: block;
+      font-size: 0.73rem;
+      color: #dc2626;
+      margin-top: 4px;
+      font-weight: 500;
+      min-height: 1em;
+    }
+
+    /* Two-column row */
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    /* ── Submit button ────────────────────────────────── */
+    .btn-submit {
+      width: 100%;
+      padding: 11px;
+      background: #4f46e5;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      transition: background 180ms, box-shadow 180ms, transform 180ms;
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      margin-top: 6px;
+    }
+    .btn-submit:hover { background: #4338ca; box-shadow: 0 4px 16px rgba(79,70,229,0.4); transform: translateY(-1px); }
+    .btn-submit:active { transform: translateY(0); }
+    .btn-submit:disabled { opacity: 0.55; cursor: not-allowed; pointer-events: none; }
+
+    /* Switch link at bottom of panel */
+    .switch-link {
+      text-align: center;
+      margin-top: 18px;
+      font-size: 0.8rem;
+      color: #64748b;
+    }
+    .switch-link a {
+      color: #4f46e5;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .switch-link a:hover { text-decoration: underline; }
+
+    /* ── Footer ───────────────────────────────────────── */
+    .footer {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 0.73rem;
+      color: rgba(255,255,255,0.25);
+    }
+
+    /* ── Toast ────────────────────────────────────────── */
+    #toast-container {
+      position: fixed; bottom: 24px; right: 24px;
+      z-index: 9999; display: flex; flex-direction: column; gap: 8px;
+    }
+    @keyframes fadeUp { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
+    .toast {
+      padding: 12px 18px; border-radius: 10px; color: #fff;
+      font-size: 0.875rem; font-weight: 500;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+      animation: fadeUp 0.25s ease;
+      min-width: 200px;
+    }
+    .toast-success { background: #059669; }
+    .toast-error   { background: #dc2626; }
+
+    @media (max-width: 480px) {
+      .form-row { grid-template-columns: 1fr; }
+      .panel { padding: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="wrapper">
+
+    <!-- Brand -->
+    <div class="brand">
+      <div class="brand-icon"><i class="fas fa-piggy-bank"></i></div>
+      <h1>Ajo Savings</h1>
+      <p>Your group savings made simple</p>
+    </div>
+
+    <!-- Card -->
+    <div class="card">
+
+      <!-- Tab switcher -->
+      <div class="tab-switcher" role="tablist">
+        <button class="tab-btn active" id="tab-login-btn" role="tab" aria-selected="true" aria-controls="panel-login">
+          <i class="fas fa-sign-in-alt"></i> Sign In
+        </button>
+        <button class="tab-btn" id="tab-register-btn" role="tab" aria-selected="false" aria-controls="panel-register">
+          <i class="fas fa-user-plus"></i> Register
+        </button>
+      </div>
+
+      <!-- ── LOGIN PANEL ──────────────────────────────── -->
+      <div class="panel active" id="panel-login" role="tabpanel">
+        <p class="panel-heading">Welcome back</p>
+        <p class="panel-sub">Enter your credentials to continue</p>
+
+        <!-- Alert -->
+        <div class="alert" id="login-alert">
+          <i class="fas fa-exclamation-circle"></i>
+          <span id="login-alert-text"></span>
+        </div>
+
+        <form id="login-form" novalidate>
+          <div class="form-group">
+            <label for="login-email">Email address</label>
+            <div class="input-wrap">
+              <i class="fas fa-envelope icon"></i>
+              <input type="email" id="login-email" placeholder="you@example.com" autocomplete="email" required />
+            </div>
+            <span class="field-error" id="login-email-error"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="login-password">Password</label>
+            <div class="input-wrap">
+              <i class="fas fa-lock icon"></i>
+              <input type="password" id="login-password" placeholder="Your password" autocomplete="current-password" required />
+              <button type="button" class="toggle-pw" data-target="login-password" aria-label="Toggle visibility">
+                <i class="fas fa-eye"></i>
+              </button>
+            </div>
+            <span class="field-error" id="login-password-error"></span>
+          </div>
+
+          <button type="submit" class="btn-submit" id="login-btn">
+            <i class="fas fa-sign-in-alt"></i> Sign In
+          </button>
+        </form>
+
+        <p class="switch-link">Don't have an account? <a id="go-register">Register here</a></p>
+      </div>
+
+      <!-- ── REGISTER PANEL ───────────────────────────── -->
+      <div class="panel" id="panel-register" role="tabpanel">
+        <p class="panel-heading">Create your account</p>
+        <p class="panel-sub">Fill in your details to join the group</p>
+
+        <!-- Alert -->
+        <div class="alert" id="register-alert">
+          <i class="fas fa-exclamation-circle"></i>
+          <span id="register-alert-text"></span>
+        </div>
+
+        <form id="register-form" novalidate>
+
+          <!-- Full name -->
+          <div class="form-group">
+            <label for="reg-name">Full Name</label>
+            <div class="input-wrap">
+              <i class="fas fa-user icon"></i>
+              <input type="text" id="reg-name" placeholder="e.g. Amaka Obi" required />
+            </div>
+            <span class="field-error" id="reg-name-error"></span>
+          </div>
+
+          <!-- Email + Phone in a row -->
+          <div class="form-row">
+            <div class="form-group">
+              <label for="reg-email">Email</label>
+              <div class="input-wrap">
+                <i class="fas fa-envelope icon"></i>
+                <input type="email" id="reg-email" placeholder="you@example.com" required />
+              </div>
+              <span class="field-error" id="reg-email-error"></span>
+            </div>
+            <div class="form-group">
+              <label for="reg-phone">Phone</label>
+              <div class="input-wrap">
+                <i class="fas fa-phone icon"></i>
+                <input type="tel" id="reg-phone" placeholder="08012345678" required />
+              </div>
+              <span class="field-error" id="reg-phone-error"></span>
+            </div>
+          </div>
+
+          <!-- Password + Confirm in a row -->
+          <div class="form-row">
+            <div class="form-group">
+              <label for="reg-password">Password</label>
+              <div class="input-wrap">
+                <i class="fas fa-lock icon"></i>
+                <input type="password" id="reg-password" placeholder="Create a strong password" required />
+                <button type="button" class="toggle-pw" data-target="reg-password" aria-label="Toggle visibility">
+                  <i class="fas fa-eye"></i>
+                </button>
+              </div>
+              <span class="field-error" id="reg-password-error"></span>
+              <!-- Live strength indicator -->
+              <div id="pw-strength-bar" style="display:none;margin-top:8px;">
+                <div style="height:4px;border-radius:9999px;background:#e2e8f0;overflow:hidden;margin-bottom:8px;">
+                  <div id="pw-strength-fill" style="height:100%;width:0%;border-radius:9999px;transition:width 250ms ease,background 250ms ease;"></div>
+                </div>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px 12px;">
+                  <div class="pw-req" id="req-upper"><i class="fas fa-circle pw-dot"></i>Uppercase letter</div>
+                  <div class="pw-req" id="req-lower"><i class="fas fa-circle pw-dot"></i>Lowercase letter</div>
+                  <div class="pw-req" id="req-number"><i class="fas fa-circle pw-dot"></i>Number (0–9)</div>
+                  <div class="pw-req" id="req-special"><i class="fas fa-circle pw-dot"></i>Special character</div>
+                  <div class="pw-req" id="req-length" style="grid-column:1/-1;"><i class="fas fa-circle pw-dot"></i>At least 8 characters</div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="reg-confirm">Confirm</label>
+              <div class="input-wrap">
+                <i class="fas fa-lock icon"></i>
+                <input type="password" id="reg-confirm" placeholder="Repeat password" required />
+              </div>
+              <span class="field-error" id="reg-confirm-error"></span>
+            </div>
+          </div>
+
+          <!-- Date joined -->
+          <div class="form-group">
+            <label for="reg-date">Date Joining</label>
+            <div class="input-wrap">
+              <i class="fas fa-calendar-alt icon"></i>
+              <input type="date" id="reg-date" required />
+            </div>
+            <span class="field-error" id="reg-date-error"></span>
+          </div>
+
+          <button type="submit" class="btn-submit" id="register-btn">
+            <i class="fas fa-user-plus"></i> Create Account
+          </button>
+        </form>
+
+        <p class="switch-link">Already have an account? <a id="go-login">Sign in</a></p>
+      </div>
+
+    </div><!-- /.card -->
+
+    <div class="footer">Ajo Savings Tracker &mdash; Members Portal</div>
+  </div>
+
+  <div id="toast-container"></div>
+  <script type="module" src="js/login.js"></script>
+</body>
+</html>

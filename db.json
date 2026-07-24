@@ -1,0 +1,163 @@
+{
+  "members": [
+    {
+      "name": "tdjyflkj kjbh",
+      "email": "hjqwehhjbfl@gmail.com",
+      "phone": "07012345679",
+      "password": "fdhjbjhyufb",
+      "role": "member",
+      "status": "Active",
+      "dateJoined": "2026-07-23",
+      "contributionAmount": 0,
+      "id": 3
+    },
+    {
+      "name": "djfsyubnd",
+      "email": "hjqwebfl@gmail.com",
+      "phone": "09012345678",
+      "password": "fdhjbjhyufb",
+      "role": "member",
+      "status": "Active",
+      "dateJoined": "2026-07-23",
+      "contributionAmount": 0,
+      "id": 4,
+      "savingsDuration": 24,
+      "savingsStartDate": "2026-07-24",
+      "withdrawalType": "flexible"
+    },
+    {
+      "name": "richard irotltahtybr",
+      "email": "hjqwfghxebfl@gmail.com",
+      "phone": "09012345678",
+      "password": "Olumide@2008",
+      "role": "member",
+      "status": "Active",
+      "dateJoined": "2026-07-24",
+      "contributionAmount": 0,
+      "id": 5,
+      "savingsDuration": 9,
+      "savingsStartDate": "2026-07-24",
+      "withdrawalType": "flexible"
+    }
+  ],
+  "contributions": [
+    {
+      "memberId": "5",
+      "memberName": "richard irotltahtybr",
+      "amount": 7999,
+      "date": "2026-07-24",
+      "id": 5
+    },
+    {
+      "memberId": "3",
+      "memberName": "tdjyflkj kjbh",
+      "amount": 790909,
+      "date": "2026-07-24",
+      "id": 6
+    },
+    {
+      "memberId": "5",
+      "memberName": "richard irotltahtybr",
+      "amount": 7000,
+      "date": "2026-07-24",
+      "id": 7
+    },
+    {
+      "memberId": "4",
+      "memberName": "djfsyubnd",
+      "amount": 500000,
+      "date": "2026-07-24",
+      "id": 8
+    }
+  ],
+  "payments": [
+    {
+      "memberId": "5",
+      "memberName": "richard irotltahtybr",
+      "amount": 5000,
+      "date": "2026-07-24",
+      "status": "Paid",
+      "id": 1
+    }
+  ],
+  "payment_requests": [
+    {
+      "memberId": "5",
+      "memberName": "richard irotltahtybr",
+      "amount": 5000,
+      "preferredDate": "2026-07-24",
+      "reason": "",
+      "status": "Approved",
+      "requestedOn": "2026-07-24",
+      "id": 1
+    },
+    {
+      "memberId": "4",
+      "memberName": "djfsyubnd",
+      "amount": 67000,
+      "preferredDate": "2026-07-24",
+      "reason": "",
+      "status": "Pending",
+      "requestedOn": "2026-07-24",
+      "id": 2
+    }
+  ],
+  "activities": [
+    {
+      "type": "created",
+      "resource": "contribution",
+      "description": "tdjyflkj kjbh contributed ₦790,909",
+      "memberId": "3",
+      "memberName": "tdjyflkj kjbh",
+      "timestamp": "2026-07-24T11:21:12.620Z",
+      "id": 1
+    },
+    {
+      "type": "deleted",
+      "resource": "contribution",
+      "description": "Contribution deleted for tdjyflkj kjbh",
+      "memberId": "4",
+      "memberName": "tdjyflkj kjbh",
+      "timestamp": "2026-07-24T11:42:32.784Z",
+      "id": 2
+    },
+    {
+      "type": "created",
+      "resource": "contribution",
+      "description": "richard irotltahtybr contributed ₦7,000",
+      "memberId": "5",
+      "memberName": "richard irotltahtybr",
+      "timestamp": "2026-07-24T11:45:26.741Z",
+      "id": 3
+    },
+    {
+      "type": "created",
+      "resource": "contribution",
+      "description": "djfsyubnd contributed ₦500,000",
+      "memberId": "4",
+      "memberName": "djfsyubnd",
+      "timestamp": "2026-07-24T11:47:07.414Z",
+      "id": 4
+    },
+    {
+      "type": "pending",
+      "resource": "payment_request",
+      "description": "djfsyubnd requested payment of ₦67,000",
+      "memberId": "4",
+      "memberName": "djfsyubnd",
+      "timestamp": "2026-07-24T11:48:16.652Z",
+      "id": 5
+    }
+  ],
+  "users": [
+    {
+      "name": "Adebanjo Richard",
+      "email": "richardadebanjo8@gmail.com",
+      "password": "admin123",
+      "role": "admin",
+      "phone": "07054674334",
+      "photo": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADYAAAA2CAYAAACMRWrdAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAOdEVYdFNvZnR3YXJlAEZpZ21hnrGWYwAAAg1JREFUeAHtmrtKxEAUhv8JXkAQrLVJaaeNtUYfQN9ALS0EfQLdJ9BF1NL1DdYH8FbbpNTKNFoLVooa5092YdlqkpyFM8N+MGTCni0+zszkZDIGQ+RnWEOELdvdtC2GbtKifaNlDpEN/mD6nfwEc5jGEXIcwEcMTvFVCH6Ut+hJTeHedpfhN8xeQrmouGWm/Jciyz0XGJut2GbrFSHxhyTCJI4RGnbx41BcQnhsRnb5CGFuDRNHCJSxmG9MYBQsbgMrxxDndhd4f3AKlRej1HoH4ty5SxHZoThKqedOlX8IiimSIjJiyqRIczGFUqSZmFIpUl9MsRSpJ6ZcilQX80CKVBPzRIpUqzxy4x574Rg7GwMLq5CmWsZeOmW9Jg1HAUeDINXnmCdy9VZFD+TqP8eUyzWrPBTLNa8VlcrJVPcK5eTex5TJyb5BK5KT3/OgHGFF4YJrXL+Ue752Ch/NLhVLpI0riPKZAW+PzuHy+4rrVmhxB6JQqpuUV0dkxZRIETkxRVJERkyZFGkuplCKNBNTKkXqiymWIvXElEuR6mIeSJFqlcf8WnkV3lHCU0tUipj8HDkCZPwN2jcoliE80gh/uEF4pMxYF6ERoRWZfTzYrLURDm2zh6xcPH6KE3Ap/CfFTHmarxArjpt+I/E8c20rlZjdgaOzg+SXiPFbWC95cDIus+3GJqRbTKkB/gF+fNAECdkyogAAAABJRU5ErkJggg==",
+      "id": "1"
+    }
+  ]
+}

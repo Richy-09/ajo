@@ -1,0 +1,11 @@
+{
+  "name": "ajo-savings-tracker",
+  "version": "1.0.0",
+  "description": "Ajo Savings Group contribution management dashboard",
+  "scripts": {
+    "start": "json-server --watch db.json --port 3000"
+  },
+  "devDependencies": {
+    "json-server": "^0.17.4"
+  }
+}

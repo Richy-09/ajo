@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AJO Savings — Track Contributions. Grow Together.</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ═══════════════════════ NAVBAR ═══════════════════════ -->
+  <nav class="lp-nav" id="lpNav">
+    <div class="lp-nav__inner">
+
+      <!-- Left: hamburger (mobile) + logo -->
+      <div class="lp-nav__left">
+        <button class="lp-hamburger" id="lpHamburger" aria-label="Open menu" aria-expanded="false">
+          <i class="fas fa-bars"></i>
+        </button>
+        <a href="index.html" class="lp-brand">
+          <div class="lp-brand__icon"><i class="fas fa-piggy-bank"></i></div>
+          <span class="lp-brand__name">AJO Savings</span>
+        </a>
+      </div>
+
+      <!-- Centre: nav links -->
+      <ul class="lp-nav__links" id="lpNavLinks">
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="members.html">Members</a></li>
+        <li><a href="contributions.html">Contributions</a></li>
+        <li><a href="payments.html">Payments</a></li>
+        <li><a href="reports.html">Reports</a></li>
+      </ul>
+
+      <!-- Right: login + register -->
+      <div class="lp-nav__actions">
+        <a href="login.html" class="lp-nav__login">Sign In</a>
+        <a href="login.html?register" class="lp-nav__register">Get Started</a>
+        <a href="profile.html" class="lp-nav__avatar" aria-label="Go to profile">
+          <i class="fas fa-user"></i>
+        </a>
+      </div>
+
+    </div>
+  </nav>
+
+  <!-- Mobile overlay -->
+  <div class="lp-overlay" id="lpOverlay"></div>
+
+  <!-- Mobile drawer -->
+  <div class="lp-drawer" id="lpDrawer" aria-hidden="true">
+    <div class="lp-drawer__header">
+      <div class="lp-brand">
+        <div class="lp-brand__icon"><i class="fas fa-piggy-bank"></i></div>
+        <span class="lp-brand__name">AJO Savings</span>
+      </div>
+      <button class="lp-drawer__close" id="lpDrawerClose" aria-label="Close menu">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+    <ul class="lp-drawer__links">
+      <li><a href="dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+      <li><a href="members.html"><i class="fas fa-users"></i> Members</a></li>
+      <li><a href="contributions.html"><i class="fas fa-hand-holding-usd"></i> Contributions</a></li>
+      <li><a href="payments.html"><i class="fas fa-money-bill-wave"></i> Payments</a></li>
+      <li><a href="reports.html"><i class="fas fa-chart-bar"></i> Reports</a></li>
+      <li><a href="profile.html"><i class="fas fa-user"></i> Profile</a></li>
+    </ul>
+    <div class="lp-drawer__footer">
+      <a href="login.html" class="lp-drawer__signin">Sign In</a>
+      <a href="login.html?register" class="lp-drawer__getstarted">Get Started</a>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════ HERO ═══════════════════════ -->
+  <section class="lp-hero">
+    <div class="lp-hero__content">
+      <div class="lp-hero__badge"><i class="fas fa-star"></i> Trusted by 500+ Groups</div>
+      <h1 class="lp-hero__title">
+        Building a<br />
+        <span>Better Tomorrow</span>
+      </h1>
+      <p class="lp-hero__sub">
+        Track contributions. Grow savings.<br />
+        Achieve more together.
+      </p>
+      <div class="lp-hero__actions">
+        <a href="login.html?register" class="lp-btn-primary">
+          <i class="fas fa-user-plus"></i> Get Started Free
+        </a>
+        <a href="dashboard.html" class="lp-btn-outline">
+          <i class="fas fa-th-large"></i> View Dashboard
+        </a>
+      </div>
+      <div class="lp-hero__proof">
+        <div class="lp-hero__avatars">
+          <span class="avatar-circle" style="background:#6366f1;">A</span>
+          <span class="avatar-circle" style="background:#059669;">B</span>
+          <span class="avatar-circle" style="background:#d97706;">C</span>
+          <span class="avatar-circle" style="background:#dc2626;">D</span>
+        </div>
+        <span>Join 5,000+ members already saving</span>
+      </div>
+    </div>
+    <div class="lp-hero__image">
+      <div class="lp-hero__img-card">
+        <!-- Decorative dashboard preview -->
+        <div class="lp-hero__mini-dash">
+          <div class="lp-hero__mini-header">
+            <span class="mini-dot red"></span>
+            <span class="mini-dot amber"></span>
+            <span class="mini-dot green"></span>
+            <span class="mini-title">AJO Dashboard</span>
+          </div>
+          <div class="lp-hero__mini-stats">
+            <div class="mini-stat">
+              <i class="fas fa-piggy-bank" style="color:#6366f1;"></i>
+              <div><strong>₦1.2M</strong><span>Total Savings</span></div>
+            </div>
+            <div class="mini-stat">
+              <i class="fas fa-users" style="color:#059669;"></i>
+              <div><strong>48</strong><span>Members</span></div>
+            </div>
+            <div class="mini-stat">
+              <i class="fas fa-hand-holding-usd" style="color:#d97706;"></i>
+              <div><strong>₦85K</strong><span>This Month</span></div>
+            </div>
+          </div>
+          <div class="lp-hero__mini-bars">
+            <div class="mini-bar" style="height:40%;background:#6366f1;"></div>
+            <div class="mini-bar" style="height:65%;background:#6366f1;"></div>
+            <div class="mini-bar" style="height:50%;background:#6366f1;"></div>
+            <div class="mini-bar" style="height:80%;background:#4f46e5;"></div>
+            <div class="mini-bar" style="height:60%;background:#6366f1;"></div>
+            <div class="mini-bar" style="height:90%;background:#4f46e5;"></div>
+            <div class="mini-bar" style="height:70%;background:#6366f1;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════ FEATURES ═══════════════════════ -->
+  <section class="lp-section" id="features">
+    <div class="lp-section__inner">
+      <div class="lp-section__header">
+        <span class="lp-badge">Features</span>
+        <h2>Everything You Need to Manage Savings Groups</h2>
+        <p>Powerful tools built specifically for Ajo savings groups — no spreadsheets needed.</p>
+      </div>
+      <div class="lp-features-grid">
+        <div class="lp-feature-card">
+          <div class="lp-feature-card__icon icon--indigo"><i class="fas fa-users"></i></div>
+          <h3>Member Management</h3>
+          <p>Add, edit, and track all savings group members with complete profile management.</p>
+        </div>
+        <div class="lp-feature-card">
+          <div class="lp-feature-card__icon icon--green"><i class="fas fa-hand-holding-usd"></i></div>
+          <h3>Contribution Tracking</h3>
+          <p>Record and edit contributions with real-time search, filter, and sort capabilities.</p>
+        </div>
+        <div class="lp-feature-card">
+          <div class="lp-feature-card__icon icon--amber"><i class="fas fa-money-bill-wave"></i></div>
+          <h3>Payment History</h3>
+          <p>Full payment history with status tracking across all group members at a glance.</p>
+        </div>
+        <div class="lp-feature-card">
+          <div class="lp-feature-card__icon icon--indigo"><i class="fas fa-chart-bar"></i></div>
+          <h3>Reports & Analytics</h3>
+          <p>Visual reports: Total Savings, Monthly Contributions, and Top Contributors.</p>
+        </div>
+        <div class="lp-feature-card">
+          <div class="lp-feature-card__icon icon--green"><i class="fas fa-tachometer-alt"></i></div>
+          <h3>Dashboard Overview</h3>
+          <p>At-a-glance cards, recent contributions, and savings progress in one view.</p>
+        </div>
+        <div class="lp-feature-card">
+          <div class="lp-feature-card__icon icon--amber"><i class="fas fa-search"></i></div>
+          <h3>Search & Filter</h3>
+          <p>Instantly find any member, contribution, or payment with real-time filtering.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════ HOW IT WORKS ═══════════════════════ -->
+  <section class="lp-section lp-section--dark" id="how-it-works">
+    <div class="lp-section__inner">
+      <div class="lp-section__header lp-section__header--light">
+        <span class="lp-badge lp-badge--light">Process</span>
+        <h2>Up and Running in Minutes</h2>
+        <p>Three simple steps to get your savings group fully organised.</p>
+      </div>
+      <div class="lp-steps">
+        <div class="lp-step">
+          <div class="lp-step__num">01</div>
+          <div class="lp-step__icon"><i class="fas fa-user-plus"></i></div>
+          <h3>Add Your Members</h3>
+          <p>Register all savings group members with their details and contact information.</p>
+        </div>
+        <div class="lp-step__arrow"><i class="fas fa-chevron-right"></i></div>
+        <div class="lp-step">
+          <div class="lp-step__num">02</div>
+          <div class="lp-step__icon"><i class="fas fa-receipt"></i></div>
+          <h3>Record Contributions</h3>
+          <p>Log each member's contribution and track payment status in real time.</p>
+        </div>
+        <div class="lp-step__arrow"><i class="fas fa-chevron-right"></i></div>
+        <div class="lp-step">
+          <div class="lp-step__num">03</div>
+          <div class="lp-step__icon"><i class="fas fa-chart-line"></i></div>
+          <h3>View Reports</h3>
+          <p>See who's leading, who's outstanding, and your group's total savings.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════ STATS ═══════════════════════ -->
+  <section class="lp-section" id="stats">
+    <div class="lp-section__inner">
+      <div class="lp-section__header">
+        <span class="lp-badge">By the Numbers</span>
+        <h2>Trusted by Growing Savings Communities</h2>
+      </div>
+      <div class="lp-stats-grid">
+        <div class="lp-stat">
+          <span class="lp-stat__num" data-target="500" data-suffix="+">0+</span>
+          <span class="lp-stat__label">Savings Groups</span>
+        </div>
+        <div class="lp-stat">
+          <span class="lp-stat__num" data-target="5000" data-suffix="+">0+</span>
+          <span class="lp-stat__label">Members Tracked</span>
+        </div>
+        <div class="lp-stat">
+          <span class="lp-stat__num" data-prefix="₦" data-target="12" data-suffix="B+">₦0B+</span>
+          <span class="lp-stat__label">Total Savings Tracked</span>
+        </div>
+        <div class="lp-stat">
+          <span class="lp-stat__num" data-target="98" data-suffix="%">0%</span>
+          <span class="lp-stat__label">Accuracy Rate</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════ CTA ═══════════════════════ -->
+  <section class="lp-section lp-section--cta">
+    <div class="lp-section__inner">
+      <div class="lp-cta-card">
+        <h2>Ready to Streamline Your Savings Group?</h2>
+        <p>No setup required. Start tracking contributions and managing members right now.</p>
+        <div class="lp-cta-actions">
+          <a href="login.html?register" class="lp-btn-white">
+            Get Started Free <i class="fas fa-arrow-right"></i>
+          </a>
+          <a href="login.html" class="lp-btn-ghost">Sign In</a>
+        </div>
+        <div class="lp-cta-badges">
+          <span><i class="fas fa-check"></i> Free to use</span>
+          <span><i class="fas fa-check"></i> No installation</span>
+          <span><i class="fas fa-check"></i> Works offline</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════ FOOTER ═══════════════════════ -->
+  <footer class="lp-footer">
+    <div class="lp-footer__inner">
+      <div class="lp-brand">
+        <div class="lp-brand__icon lp-brand__icon--sm"><i class="fas fa-piggy-bank"></i></div>
+        <span class="lp-brand__name">AJO Savings</span>
+      </div>
+      <p>© 2025 AJO Savings Tracker. Built for savings communities.</p>
+      <div class="lp-footer__links">
+        <a href="dashboard.html">Dashboard</a>
+        <a href="#features">Features</a>
+        <a href="#how-it-works">How It Works</a>
+        <a href="login.html">Sign In</a>
+        <a href="login.html?register">Register</a>
+      </div>
+    </div>
+  </footer>
+
+  <div id="toast-container"></div>
+  <script src="js/landing.js?v=2"></script>
+</body>
+</html>

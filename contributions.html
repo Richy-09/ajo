@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contributions — Ajo Savings</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="topbar" id="topbar">
+    <button class="hamburger" id="hamburger" aria-label="Open menu"><i class="fas fa-bars"></i></button>
+    <span class="topbar-logo"><i class="fas fa-piggy-bank"></i> Ajo Savings</span>
+  </header>
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  <div class="app-layout">
+    <nav class="sidebar" id="sidebar">
+      <a href="index.html" class="sidebar-logo" style="text-decoration:none;" aria-label="Go to home page"><i class="fas fa-piggy-bank"></i> Ajo Savings</a>
+      <ul class="nav-links">
+        <li><a href="dashboard.html" data-page="dashboard"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+        <li><a href="members.html" data-page="members"><i class="fas fa-users"></i> Members</a></li>
+        <li><a href="contributions.html" data-page="contributions"><i class="fas fa-hand-holding-usd"></i> Contributions</a></li>
+        <li><a href="payments.html" data-page="payments"><i class="fas fa-money-bill-wave"></i> Payments</a></li>
+        <li><a href="reports.html" data-page="reports"><i class="fas fa-chart-bar"></i> Reports</a></li>
+        <li><a href="profile.html" data-page="profile"><i class="fas fa-user"></i> Profile</a></li>
+        <li><a href="settings.html" data-page="settings"><i class="fas fa-cog"></i> Settings</a></li>
+      </ul>
+      <div class="sidebar-footer">Ajo Savings Tracker v1.0</div>
+    </nav>
+
+    <main class="main-content">
+      <div class="page-header">
+        <div>
+          <h1>Contributions</h1>
+          <p>Record and track member contributions</p>
+        </div>
+      </div>
+
+      <div class="content-grid">
+        <!-- Form panel -->
+        <div class="form-panel">
+          <h2><i class="fas fa-plus-circle" style="color:var(--success);margin-right:6px;"></i>Record Contribution</h2>
+          <form id="contribution-form" novalidate>
+            <div class="form-group">
+              <label for="contribution-member">Member</label>
+              <select id="contribution-member" class="form-control" required>
+                <option value="">— Select Member —</option>
+              </select>
+              <span class="field-error" id="contribution-member-error"></span>
+            </div>
+            <div class="form-group">
+              <label for="contribution-amount">Amount (₦)</label>
+              <input type="number" id="contribution-amount" class="form-control" min="1" placeholder="0.00" required />
+              <span class="field-error" id="contribution-amount-error"></span>
+            </div>
+            <div class="form-group">
+              <label for="contribution-date">Date</label>
+              <input type="date" id="contribution-date" class="form-control" required />
+              <span class="field-error" id="contribution-date-error"></span>
+            </div>
+            <button type="submit" class="btn btn-primary" id="contribution-submit" style="width:100%;justify-content:center;">
+              <i class="fas fa-plus"></i> Record Contribution
+            </button>
+          </form>
+        </div>
+
+        <!-- Table panel -->
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title"><i class="fas fa-hand-holding-usd" style="background:var(--success-faint);color:var(--success);"></i> All Contributions</span>
+          </div>
+          <div class="table-toolbar">
+            <input type="text" id="contribution-search" class="search-input" placeholder="Search contributions…" aria-label="Search contributions" />
+            <select id="contribution-sort" class="sort-select" aria-label="Sort">
+              <option value="newest">Newest</option>
+              <option value="oldest">Oldest</option>
+              <option value="amount-high">Highest Amount</option>
+              <option value="amount-low">Lowest Amount</option>
+              <option value="name-az">Name A–Z</option>
+              <option value="name-za">Name Z–A</option>
+            </select>
+          </div>
+          <div class="table-wrapper">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Member</th>
+                  <th>Amount (₦)</th>
+                  <th>Date</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="contributions-tbody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <div id="toast-container"></div>
+  <script type="module" src="js/contributions.js"></script>
+</body>
+</html>

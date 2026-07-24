@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reports — Ajo Savings</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="topbar" id="topbar">
+    <button class="hamburger" id="hamburger" aria-label="Open menu"><i class="fas fa-bars"></i></button>
+    <span class="topbar-logo"><i class="fas fa-piggy-bank"></i> Ajo Savings</span>
+  </header>
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  <div class="app-layout">
+    <nav class="sidebar" id="sidebar">
+      <a href="index.html" class="sidebar-logo" style="text-decoration:none;" aria-label="Go to home page"><i class="fas fa-piggy-bank"></i> Ajo Savings</a>
+      <ul class="nav-links">
+        <li><a href="dashboard.html" data-page="dashboard"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+        <li><a href="members.html" data-page="members"><i class="fas fa-users"></i> Members</a></li>
+        <li><a href="contributions.html" data-page="contributions"><i class="fas fa-hand-holding-usd"></i> Contributions</a></li>
+        <li><a href="payments.html" data-page="payments"><i class="fas fa-money-bill-wave"></i> Payments</a></li>
+        <li><a href="reports.html" data-page="reports"><i class="fas fa-chart-bar"></i> Reports</a></li>
+        <li><a href="profile.html" data-page="profile"><i class="fas fa-user"></i> Profile</a></li>
+        <li><a href="settings.html" data-page="settings"><i class="fas fa-cog"></i> Settings</a></li>
+      </ul>
+      <div class="sidebar-footer">Ajo Savings Tracker v1.0</div>
+    </nav>
+
+    <main class="main-content">
+      <div class="page-header">
+        <div>
+          <h1>Reports</h1>
+          <p>Auto-calculated financial summary for your group</p>
+        </div>
+      </div>
+
+      <div class="tab-bar" role="tablist" aria-label="Report tabs">
+        <button class="tab-btn active" data-tab="summary" role="tab" aria-selected="true">Summary</button>
+        <button class="tab-btn" data-tab="contributions" role="tab" aria-selected="false">Contributions</button>
+        <button class="tab-btn" data-tab="payments" role="tab" aria-selected="false">Payments</button>
+        <button class="tab-btn" data-tab="members" role="tab" aria-selected="false">Members</button>
+      </div>
+
+      <!-- Summary Tab -->
+      <div class="tab-panel" id="tab-summary" role="tabpanel">
+        <div class="stats-grid" style="grid-template-columns:repeat(3,1fr);">
+          <div class="stat-card">
+            <div class="stat-icon blue"><i class="fas fa-piggy-bank"></i></div>
+            <div class="stat-info">
+              <span class="stat-value" id="metric-savings">₦0</span>
+              <span class="stat-label">Total Savings</span>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon green"><i class="fas fa-hand-holding-usd"></i></div>
+            <div class="stat-info">
+              <span class="stat-value" id="metric-contributions">₦0</span>
+              <span class="stat-label">Total Contributions</span>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon orange"><i class="fas fa-money-bill-wave"></i></div>
+            <div class="stat-info">
+              <span class="stat-value" id="metric-payments">₦0</span>
+              <span class="stat-label">Total Payments</span>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon purple"><i class="fas fa-balance-scale"></i></div>
+            <div class="stat-info">
+              <span class="stat-value" id="metric-balance">₦0</span>
+              <span class="stat-label">Outstanding Balance</span>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon cyan"><i class="fas fa-users"></i></div>
+            <div class="stat-info">
+              <span class="stat-value" id="metric-active-members">0</span>
+              <span class="stat-label">Active Members</span>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon green"><i class="fas fa-trophy"></i></div>
+            <div class="stat-info">
+              <span class="stat-value" id="metric-top-contributor" style="font-size:1rem;">—</span>
+              <span class="stat-label">Top Contributor</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="tab-contributions" role="tabpanel" style="display:none">
+        <div class="card"><div id="report-contributions-table"></div></div>
+      </div>
+      <div class="tab-panel" id="tab-payments" role="tabpanel" style="display:none">
+        <div class="card"><div id="report-payments-table"></div></div>
+      </div>
+      <div class="tab-panel" id="tab-members" role="tabpanel" style="display:none">
+        <div class="card"><div id="report-members-table"></div></div>
+      </div>
+    </main>
+  </div>
+
+  <div id="toast-container"></div>
+  <script type="module" src="js/reports.js"></script>
+</body>
+</html>

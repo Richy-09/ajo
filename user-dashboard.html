@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Dashboard — Ajo Savings</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="topbar" id="topbar">
+    <button class="hamburger" id="hamburger" aria-label="Open menu"><i class="fas fa-bars"></i></button>
+    <span class="topbar-logo"><i class="fas fa-piggy-bank"></i> Ajo Savings</span>
+  </header>
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  <div class="app-layout">
+    <nav class="sidebar" id="sidebar">
+      <a href="index.html" class="sidebar-logo" style="text-decoration:none;" aria-label="Go to home page"><i class="fas fa-piggy-bank"></i> Ajo Savings</a>
+      <ul class="nav-links">
+        <li><a href="user-dashboard.html"     data-page="user-dashboard">    <i class="fas fa-home"></i>              My Dashboard</a></li>
+        <li><a href="user-contributions.html" data-page="user-contributions"><i class="fas fa-hand-holding-usd"></i>  My Contributions</a></li>
+        <li><a href="user-payments.html"      data-page="user-payments">     <i class="fas fa-money-bill-wave"></i>   My Payments</a></li>
+        <li><a href="user-reports.html"       data-page="user-reports">      <i class="fas fa-chart-pie"></i>         My Reports</a></li>
+        <li><a href="user-profile.html"       data-page="user-profile">      <i class="fas fa-user"></i>              My Profile</a></li>
+      </ul>
+      <div style="padding:16px 10px;border-top:1px solid rgba(255,255,255,0.08);margin-top:auto;">
+        <button id="user-logout-btn" style="width:100%;padding:9px 12px;background:rgba(220,38,38,0.15);color:#fca5a5;border:none;border-radius:6px;font-size:0.875rem;font-weight:500;cursor:pointer;display:flex;align-items:center;gap:8px;font-family:inherit;">
+          <i class="fas fa-sign-out-alt"></i> Logout
+        </button>
+      </div>
+    </nav>
+
+    <main class="main-content">
+      <div class="page-header">
+        <div>
+          <h1 id="welcome-heading">My Dashboard</h1>
+          <p>Here's your personal savings overview</p>
+        </div>
+      </div>
+
+      <!-- Stat cards -->
+      <div id="user-stats" class="stats-grid"></div>
+
+      <!-- Recent contributions + Latest Activities -->
+      <div class="dashboard-panels" style="margin-top:20px;">
+
+        <!-- Recent contributions -->
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">
+              <i class="fas fa-history" style="background:var(--primary-faint);color:var(--primary);"></i>
+              My Recent Contributions
+            </span>
+            <a href="user-contributions.html" style="font-size:0.8rem;color:var(--primary);text-decoration:none;font-weight:500;">
+              View all <i class="fas fa-arrow-right"></i>
+            </a>
+          </div>
+          <div id="recent-my-contributions"></div>
+        </div>
+
+        <!-- Latest Activities -->
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">
+              <i class="fas fa-bolt" style="background:var(--warning-faint);color:var(--warning);"></i>
+              Latest Activities
+            </span>
+          </div>
+          <div id="user-latest-activities"></div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <div id="toast-container"></div>
+  <script type="module" src="js/user-dashboard.js"></script>
+</body>
+</html>

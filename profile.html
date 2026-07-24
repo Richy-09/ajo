@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Profile — Ajo Savings</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="topbar" id="topbar">
+    <button class="hamburger" id="hamburger" aria-label="Open menu"><i class="fas fa-bars"></i></button>
+    <span class="topbar-logo"><i class="fas fa-piggy-bank"></i> Ajo Savings</span>
+  </header>
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  <div class="app-layout">
+    <nav class="sidebar" id="sidebar">
+      <a href="index.html" class="sidebar-logo" style="text-decoration:none;" aria-label="Go to home page"><i class="fas fa-piggy-bank"></i> Ajo Savings</a>
+      <ul class="nav-links">
+        <li><a href="dashboard.html" data-page="dashboard"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+        <li><a href="members.html" data-page="members"><i class="fas fa-users"></i> Members</a></li>
+        <li><a href="contributions.html" data-page="contributions"><i class="fas fa-hand-holding-usd"></i> Contributions</a></li>
+        <li><a href="payments.html" data-page="payments"><i class="fas fa-money-bill-wave"></i> Payments</a></li>
+        <li><a href="reports.html" data-page="reports"><i class="fas fa-chart-bar"></i> Reports</a></li>
+        <li><a href="profile.html" data-page="profile"><i class="fas fa-user"></i> Profile</a></li>
+        <li><a href="settings.html" data-page="settings"><i class="fas fa-cog"></i> Settings</a></li>
+      </ul>
+      <div class="sidebar-footer">Ajo Savings Tracker v1.0</div>
+    </nav>
+
+    <main class="main-content">
+      <div class="page-header">
+        <div>
+          <h1>Profile</h1>
+          <p>View and update your personal information</p>
+        </div>
+      </div>
+
+      <div class="content-grid">
+        <!-- Display card -->
+        <div class="card" id="profile-display">
+          <div class="profile-avatar-wrap">
+            <img id="avatar" src="" alt="Avatar" />
+            <strong id="display-name" style="font-size:1rem;font-weight:700;color:var(--text);"></strong>
+          </div>
+          <div class="profile-info-row">
+            <i class="fas fa-phone"></i>
+            <span>Phone</span>
+            <strong id="display-phone"></strong>
+          </div>
+          <div class="profile-info-row">
+            <i class="fas fa-users"></i>
+            <span>Group</span>
+            <strong id="display-group"></strong>
+          </div>
+          <div class="profile-info-row">
+            <i class="fas fa-calendar-alt"></i>
+            <span>Since</span>
+            <strong id="display-since"></strong>
+          </div>
+        </div>
+
+        <!-- Edit form -->
+        <div class="form-panel">
+          <h2><i class="fas fa-pen" style="color:var(--primary);margin-right:6px;"></i>Edit Profile</h2>
+          <form id="profile-form" novalidate>
+            <div class="form-group">
+              <label for="photo">Profile Photo</label>
+              <input type="file" id="photo" class="form-control" accept="image/*" />
+            </div>
+            <div class="form-group">
+              <label for="profile-name">Full Name</label>
+              <input type="text" id="profile-name" class="form-control" placeholder="Full name" required />
+              <span class="field-error" id="profile-name-error"></span>
+            </div>
+            <div class="form-group">
+              <label for="profile-phone">Phone</label>
+              <input type="tel" id="profile-phone" class="form-control" placeholder="Phone number" />
+            </div>
+            <div class="form-group">
+              <label for="profile-email">Email</label>
+              <input type="email" id="profile-email" class="form-control" placeholder="Email address" required />
+              <span class="field-error" id="profile-email-error"></span>
+            </div>
+            <div class="form-group">
+              <label for="profile-password">New Password</label>
+              <input type="password" id="profile-password" class="form-control" placeholder="Leave blank to keep current" />
+            </div>
+            <button type="submit" class="btn btn-primary" id="profile-submit" style="width:100%;justify-content:center;">
+              <i class="fas fa-save"></i> Save Changes
+            </button>
+          </form>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <div id="toast-container"></div>
+  <script type="module" src="js/profile.js"></script>
+</body>
+</html>
